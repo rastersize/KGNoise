@@ -85,10 +85,16 @@ CGFloat *gradientComponentsForColors(NSColor *color1, NSColor *color2){
         CGContextScaleCTM(context, 1/scaleFactor, 1/scaleFactor);
     }
 #else
+    /* The following has been disabled as the it resulted in the noise being of
+     * a different size depending on whether the screen was @1x (2 times as large
+     * as) or @2x. Instead we always scale it to 1/2. This means we will lose
+     * information on @1x screens but we will have consistency.
+     *
     if([[NSScreen mainScreen] respondsToSelector:@selector(backingScaleFactor)]){
         CGFloat scaleFactor = [[NSScreen mainScreen] backingScaleFactor];
         CGContextScaleCTM(context, 1/scaleFactor, 1/scaleFactor);
-    }
+    }*/
+    CGContextScaleCTM(context, 1.f/2.f, 1.f/2.f);
 #endif
 
     CGRect imageRect = (CGRect){.origin = CGPointZero, .size = {CGImageGetWidth(noiseImageRef), CGImageGetHeight(noiseImageRef)}};
