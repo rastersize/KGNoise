@@ -112,7 +112,7 @@ CGFloat *gradientComponentsForColors(NSColor *color1, NSColor *color2){
     return [self colorWithNoiseWithOpacity:opacity andBlendMode:kCGBlendModeScreen];
 }
 - (UIColor *)colorWithNoiseWithOpacity:(CGFloat)opacity andBlendMode:(CGBlendMode)blendMode{
-    CGRect rect = {CGPointZero, kImageSize, kImageSize};
+    CGRect rect = {CGPointZero, {kImageSize, kImageSize}};
     UIGraphicsBeginImageContextWithOptions(rect.size, YES, 0.0f);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [self setFill]; CGContextFillRect(context, rect);
@@ -128,7 +128,7 @@ CGFloat *gradientComponentsForColors(NSColor *color1, NSColor *color2){
     return [self colorWithNoiseWithOpacity:opacity andBlendMode:kCGBlendModeScreen];    
 }
 - (NSColor *)colorWithNoiseWithOpacity:(CGFloat)opacity andBlendMode:(CGBlendMode)blendMode{
-    CGRect rect = {CGPointZero, kImageSize, kImageSize};
+    CGRect rect = {CGPointZero, {kImageSize, kImageSize}};
     NSImage *image = [[NSImage alloc] initWithSize:rect.size];
     [image lockFocus];
     CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];  
